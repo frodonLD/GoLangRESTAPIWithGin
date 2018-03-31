@@ -57,7 +57,6 @@ func TestHealthCheckHandler(t *testing.T) {
 func BenchmarkHealthCheckHandler(b *testing.B) {
 	gin.SetMode(gin.TestMode)
 	r := gin.New()
-	//r.Use(gin.Recovery())
 	r.GET("/_health", HealthCheck)
 
 	w := httptest.NewRecorder()
