@@ -2,7 +2,7 @@
 
 # Go Rest API Based on Gin framework
 
-[![Build Status](https://travis-ci.org/frodonLD/GoLangRESTAPIWithMux.svg?branch=master)](https://travis-ci.org/frodonLD/GoLangRESTAPIWithMux)
+[![Build Status](https://travis-ci.org/frodonLD/GoLangRESTAPIWithGin.svg?branch=master)](https://travis-ci.org/frodonLD/GoLangRESTAPIWithGin)
 
 * [go](https://golang.org/) as language
 * [dep](https://github.com/golang/dep) as dependencies manager
