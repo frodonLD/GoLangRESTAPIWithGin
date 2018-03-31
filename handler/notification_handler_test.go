@@ -39,7 +39,7 @@ func resetData() {
 	model.Notifications = []model.Notification{}
 }
 
-func setupLogInfoTestCase(t *testing.T) func(t *testing.T) {
+func setupDataTestCase(t *testing.T) func(t *testing.T) {
 	initTestsData()
 	return func(t *testing.T) {
 		t.Log("teardown test case")
@@ -48,7 +48,7 @@ func setupLogInfoTestCase(t *testing.T) func(t *testing.T) {
 }
 
 func TestGetAllNotificationsHandler(t *testing.T) {
-	teardownTestCase := setupLogInfoTestCase(t)
+	teardownTestCase := setupDataTestCase(t)
 	defer teardownTestCase(t)
 
 	logsJSON, err := json.Marshal(&model.Notifications)
@@ -103,7 +103,7 @@ func BenchmarkGetLogHandler(b *testing.B) {
 	initTestsData()
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.New()
-	r.GET("/logs", GetAllNotificationsHandler)
+	r.GET("/logs/:id", GetAllNotificationsHandler)
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest("GET", "/logs/1", nil)
 	for n := 0; n < b.N; n++ {
