@@ -66,7 +66,7 @@ func TestGetAllNotificationsHandler(t *testing.T) {
 			"Case 200 : GET Logs, returned",
 			http.MethodGet,
 			http.StatusOK,
-			logsJSON,
+			string(logsJSON),
 		},
 	}
 
@@ -82,7 +82,7 @@ func TestGetAllNotificationsHandler(t *testing.T) {
 			GetAllNotificationsHandler(contextTest)
 
 			assert.Equal(t, tc.expectedHTTPCode, w.Code)
-			assert.Equal(t, tc.expectedBody, []byte(w.Body.String()))
+			assert.Equal(t, tc.expectedBody, w.Body.String())
 		})
 	}
 }
