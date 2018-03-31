@@ -10,8 +10,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var router *gin.Engine
-
 func setupHealthTestCase(t *testing.T) func(t *testing.T) {
 	return func(t *testing.T) {
 		t.Log("teardown test case")
@@ -22,7 +20,6 @@ func TestHealthCheckHandler(t *testing.T) {
 	teardownTestCase := setupHealthTestCase(t)
 	defer teardownTestCase(t)
 
-	expectedBody := `{"alive":true}`
 	testCases := []struct {
 		description      string
 		httpMethod       string
@@ -35,28 +32,24 @@ func TestHealthCheckHandler(t *testing.T) {
 			http.MethodGet,
 			http.StatusOK,
 			nil,
-			expectedBody,
+			`{"alive":true}`,
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf(tc.description), func(t *testing.T) {
 
-			req, err := http.NewRequest(tc.httpMethod, "/api/v1/_health", nil)
+			gin.SetMode(gin.TestMode)
+			req, err := http.NewRequest(tc.httpMethod, "/_health", nil)
 			assert.Nil(t, err)
-
 			w := httptest.NewRecorder()
-			router.ServeHTTP(w, req)
+			contextTest, _ := gin.CreateTestContext(w)
+			contextTest.Request = req
 
-			respRes := w.Result()
-			returnedHTTPCode := respRes.StatusCode
+			HealthCheck(contextTest)
 
-			assert.Equal(t, tc.expectedHTTPCode, returnedHTTPCode)
-
-			for expectedHeaderKey, expectedHeaderValue := range tc.expectedHeaders {
-				got := respRes.Header[expectedHeaderKey]
-				assert.ElementsMatch(t, got, expectedHeaderValue, "testing header %s", expectedHeaderKey)
-			}
+			assert.Equal(t, tc.expectedHTTPCode, w.Code)
+			assert.Equal(t, tc.expectedBody, w.Body.String())
 		})
 	}
 }
