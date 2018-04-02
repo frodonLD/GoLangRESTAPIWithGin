@@ -1,6 +1,4 @@
-# GoLangRESTAPIWithGin
-
-# Go Rest API Based on Gin framework
+# Golang Rest API Based on Gin framework
 
 [![Build Status](https://travis-ci.org/frodonLD/GoLangRESTAPIWithGin.svg?branch=master)](https://travis-ci.org/frodonLD/GoLangRESTAPIWithGin)
 
