@@ -1,6 +1,7 @@
 # Golang Rest API Based on Gin framework
 
 [![Build Status](https://travis-ci.org/frodonLD/golang-rest-api-with-gogin.svg?branch=master)](https://travis-ci.org/frodonLD/golang-rest-api-with-gogin)
+[![Go Report Card](https://goreportcard.com/badge/github.com/frodonLD/golang-rest-api-with-gogin)](https://goreportcard.com/report/github.com/frodonLD/golang-rest-api-with-gogin)
 
 * [go](https://golang.org/) as language
 * [dep](https://github.com/golang/dep) as dependencies manager
