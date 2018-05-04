@@ -34,6 +34,7 @@ func setupRouter() *gin.Engine {
 	return r
 }
 
+// Start launch the gin router
 func Start() {
 	router := setupRouter()
 	router.Run(":8080")
