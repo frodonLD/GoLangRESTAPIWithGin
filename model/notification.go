@@ -14,4 +14,5 @@ type NotificationLevel struct {
 	Bloquant bool   `json:"bloquant"`
 }
 
+// Notifications is our Notification storage for speed run
 var Notifications []Notification
