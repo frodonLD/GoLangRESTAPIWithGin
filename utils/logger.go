@@ -16,7 +16,9 @@ type LoggingContext struct {
 }
 
 const (
+	// CorrelationIDKey is the key we'll use to store the correlation id in the gin context
 	CorrelationIDKey  = "correlation_id"
+	// LoggingContextKey is the key we'll use to store the logging context in the gin context
 	LoggingContextKey = "logging_context"
 )
 
